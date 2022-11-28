@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: ui-service
   labels:
-  {{- include "ui.labels" . | nindent 4 }}
+    app: react-ui
+    env: dev
 spec:
   ports:
   - name: http

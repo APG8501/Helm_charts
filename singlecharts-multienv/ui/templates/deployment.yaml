@@ -3,20 +3,27 @@ kind: Deployment
 metadata:
   name: react-ui-dep
   labels:
-  {{- include "ui.labels" . | nindent 4 }}
+    app: react-ui
+    env: dev
 spec:
-  replicas: {{ .Values.app.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: react-ui
   template:
     metadata:
       labels:
-        {{- include "ui.labels" . | nindent 8 }}
+        app: react-ui
+        env: dev
     spec:
       containers:
         - name: react-ui
-          image: {{ .Values.app.container.image }}
+          image: deekshithsn/ui
           imagePullPolicy: IfNotPresent
           resources:
-           {{- toYaml .Values.app.computerc | nindent 12 }}
+            limits:
+              cpu: 0.2
+              memory: 500Mi
+            requests:
+              cpu: 0.2
+              memory: 500Mi
