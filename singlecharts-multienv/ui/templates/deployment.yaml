@@ -6,7 +6,7 @@ metadata:
     app: react-ui
     env: dev
 spec:
-  replicas: 1
+  replicas: {{ .Values.app.replicas }}
   selector:
     matchLabels:
       app: react-ui
